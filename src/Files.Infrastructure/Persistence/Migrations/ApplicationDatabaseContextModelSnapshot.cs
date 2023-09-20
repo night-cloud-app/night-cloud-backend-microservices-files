@@ -3,49 +3,46 @@ using System;
 using Files.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Files.Application.Common.Exceptions.Migrations
+namespace Files.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDatabaseContext))]
-    [Migration("20230628185759_DirectoriesTableIdIndex")]
-    partial class DirectoriesTableIdIndex
+    partial class ApplicationDatabaseContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.5")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+                .HasAnnotation("ProductVersion", "7.0.11")
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Presentation.Model.Directory", b =>
+            modelBuilder.Entity("Files.Domain.Entities.Directory.Directory", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<Guid?>("ParentDirectoryId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("Updated")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
@@ -56,34 +53,34 @@ namespace Files.Application.Common.Exceptions.Migrations
                     b.ToTable("Directories");
                 });
 
-            modelBuilder.Entity("Presentation.Model.File", b =>
+            modelBuilder.Entity("Files.Domain.Entities.File.File", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid?>("DirectoryId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Extension")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("Updated")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<int>("UploadingStatus")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
@@ -92,25 +89,25 @@ namespace Files.Application.Common.Exceptions.Migrations
                     b.ToTable("Files");
                 });
 
-            modelBuilder.Entity("Presentation.Model.Directory", b =>
+            modelBuilder.Entity("Files.Domain.Entities.Directory.Directory", b =>
                 {
-                    b.HasOne("Presentation.Model.Directory", "ParentDirectory")
+                    b.HasOne("Files.Domain.Entities.Directory.Directory", "ParentDirectory")
                         .WithMany("Directories")
                         .HasForeignKey("ParentDirectoryId");
 
                     b.Navigation("ParentDirectory");
                 });
 
-            modelBuilder.Entity("Presentation.Model.File", b =>
+            modelBuilder.Entity("Files.Domain.Entities.File.File", b =>
                 {
-                    b.HasOne("Presentation.Model.Directory", "Directory")
+                    b.HasOne("Files.Domain.Entities.Directory.Directory", "Directory")
                         .WithMany("Files")
                         .HasForeignKey("DirectoryId");
 
                     b.Navigation("Directory");
                 });
 
-            modelBuilder.Entity("Presentation.Model.Directory", b =>
+            modelBuilder.Entity("Files.Domain.Entities.Directory.Directory", b =>
                 {
                     b.Navigation("Directories");
 

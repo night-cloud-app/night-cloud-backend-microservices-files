@@ -10,8 +10,8 @@
     <ItemGroup>
       <ProjectReference Include="..\..\..\..\Shared\QueueMessaging\QueueMessaging.csproj" />
       <ProjectReference Include="..\..\..\..\Shared\Middlewares\Middlewares.csproj" />
-      <ProjectReference Include="..\Domain\Domain.csproj" />
-      <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+      <ProjectReference Include="..\Files.Domain\Files.Domain.csproj" />
+      <ProjectReference Include="..\Files.Infrastructure\Files.Infrastructure.csproj" />
     </ItemGroup>
 
     <ItemGroup>

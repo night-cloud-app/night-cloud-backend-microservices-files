@@ -19,14 +19,7 @@ public static class ServicesExtensions
         services.AddDbContext<ApplicationDatabaseContext>(
             (x) =>
             {
-                if (configuration["ASPNETCORE_ENVIRONMENT"] == "Development")
-                {
-                    x.UseSqlServer(configuration["ConnectionStrings:LocalDatabase"]);
-                }
-                else
-                {
-                    x.UseSqlServer(configuration.GetConnectionString());
-                }
+                x.UseNpgsql(configuration.GetConnectionString());
             });
     }
 
@@ -58,10 +51,10 @@ public static class ServicesExtensions
             x.AddConsumer<FileSavedConsumer>();
             x.UsingRabbitMq((context, config) =>
             {
-                config.Host(configuration["RABBIT_MQ_HOSTNAME"], configuration["RABBIT_MQ_VIRTUAL_HOST"], c =>
+                config.Host(configuration["RabbitMQ:Host"], configuration["RabbitMQ:VirtualHost"], c =>
                 {
-                    c.Username(configuration["RABBIT_MQ_USERNAME"]);
-                    c.Password(configuration["RABBIT_MQ_PASSWORD"]);
+                    c.Username(configuration["RabbitMQ:Username"]);
+                    c.Password(configuration["RabbitMQ:Password"]);
                 });
                 
                 config.ConfigureEndpoints(context);

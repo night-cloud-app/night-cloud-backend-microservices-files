@@ -11,7 +11,7 @@ using Models.File;
 using Moq;
 using Directory = Files.Domain.Entities.Directory.Directory;
 using File = Files.Domain.Entities.File.File;
-namespace Application.UnitTests.Services;
+namespace Files.Application.UnitTests.Services;
 
 public class FileServiceTests
 {
