@@ -1,8 +1,6 @@
-﻿using System.Reflection;
-using Files.Application.Common.Exceptions;
+﻿using Files.Application.Common.Exceptions;
 using FluentValidation;
 using Serilog;
-using Services.Authentication;
 
 namespace Files.Presentation.Extensions;
 

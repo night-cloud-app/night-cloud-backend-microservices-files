@@ -1,5 +1,5 @@
 ﻿
-using Middlewares.ExceptionHandling.Exceptions;
+using NightCloud.Common.Middlewares.ExceptionHandling.Exceptions;
 
 namespace Files.Application.Common.Exceptions;
 

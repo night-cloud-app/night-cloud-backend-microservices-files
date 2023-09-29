@@ -1,8 +1,8 @@
 ﻿using MassTransit;
 using Microsoft.EntityFrameworkCore;
-using Models.File;
 using Files.Domain.Enums;
 using Files.Infrastructure.Persistence;
+using NightCloud.Common.QueueMessaging.File;
 
 namespace Files.Infrastructure.Messaging.Consumers;
 

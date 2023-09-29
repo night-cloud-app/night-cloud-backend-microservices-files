@@ -4,10 +4,9 @@ using Files.Application.Features.Directory.Commands.UpdateDirectory;
 using Files.Application.Features.Directory.DataTransferObjects;
 using Files.Application.Features.Directory.Queries.GetDirectories;
 using Files.Application.Features.Directory.Queries.GetDirectory;
-using Files.Application.Features.Directory.Validators;
 using Files.Presentation.Filters;
 using MediatR;
-using Services.Authentication;
+using NightCloud.Common.Services.Authentication;
 
 namespace Files.Presentation.Endpoints.Directories;
 

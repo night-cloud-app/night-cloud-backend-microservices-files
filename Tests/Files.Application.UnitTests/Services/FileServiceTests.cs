@@ -7,8 +7,8 @@ using Files.Infrastructure.Persistence.RepositoryManagers;
 using MassTransit;
 using Microsoft.Extensions.Logging;
 using MockQueryable.Moq;
-using Models.File;
 using Moq;
+using NightCloud.Common.QueueMessaging.File;
 using Directory = Files.Domain.Entities.Directory.Directory;
 using File = Files.Domain.Entities.File.File;
 namespace Files.Application.UnitTests.Services;
@@ -16,24 +16,20 @@ namespace Files.Application.UnitTests.Services;
 public class FileServiceTests
 {
     private readonly IFileService _service;
-    private readonly IMapper _mapper;
-    private readonly Mock<IPublishEndpoint> _publishEndpoint;
-    private readonly Mock<IRequestClient<RetrieveFile>> _client;
-    private readonly Mock<ILogger<FileService>> _logger;
     private readonly Mock<IRepositoryManager> _repositoryManager;
 
     public FileServiceTests()
     {
-        _mapper = new MapperConfiguration(x =>
+        var mapper = new MapperConfiguration(x =>
         {
             x.AddProfile<MappingProfile>();
         }).CreateMapper();
-        _publishEndpoint = new Mock<IPublishEndpoint>();
-        _client = new Mock<IRequestClient<RetrieveFile>>();
-        _logger = new Mock<ILogger<FileService>>();
+        Mock<IPublishEndpoint> publishEndpoint = new();
+        Mock<IRequestClient<RetrieveFile>> client = new();
+        Mock<ILogger<FileService>> logger = new();
         _repositoryManager = new Mock<IRepositoryManager>();
         _service = new FileService(
-            _repositoryManager.Object,_mapper, _publishEndpoint.Object, _client.Object, _logger.Object);
+            _repositoryManager.Object,mapper, publishEndpoint.Object, client.Object, logger.Object);
     }
 
     [Fact]

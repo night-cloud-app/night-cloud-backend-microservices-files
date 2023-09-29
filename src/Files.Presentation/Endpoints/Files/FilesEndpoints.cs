@@ -5,10 +5,9 @@ using Files.Application.Features.File.DataTransferObjects;
 using Files.Application.Features.File.Queries.DownloadFile;
 using Files.Application.Features.File.Queries.GetFile;
 using Files.Application.Features.File.Queries.GetFiles;
-using Files.Application.Extensions.Services;
 using Files.Presentation.Filters;
 using MediatR;
-using Services.Authentication;
+using NightCloud.Common.Services.Authentication;
 
 namespace Files.Presentation.Endpoints.Files;
 

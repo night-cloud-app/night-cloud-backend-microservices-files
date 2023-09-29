@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using DatabaseInfrastructure.Helper;
 using Files.Application.Common.Behaviours;
 using Files.Application.Extensions.Interfaces;
 using MassTransit;
@@ -19,7 +18,7 @@ public static class ServicesExtensions
         services.AddDbContext<ApplicationDatabaseContext>(
             (x) =>
             {
-                x.UseNpgsql(configuration.GetConnectionString());
+                x.UseNpgsql(configuration.GetConnectionString("PostgresDatabase"));
             });
     }
 

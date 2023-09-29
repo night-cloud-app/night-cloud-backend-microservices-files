@@ -4,7 +4,7 @@ using Files.Application.Extensions.Interfaces;
 using Files.Application.Features.Directory.DataTransferObjects;
 using Files.Infrastructure.Persistence.RepositoryManagers;
 using MassTransit;
-using QueueMessaging.File;
+using NightCloud.Common.QueueMessaging.File;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 

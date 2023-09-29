@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Files.Infrastructure.Persistence;
-using Middlewares.Authentication;
-using Middlewares.ExceptionHandling;
+using NightCloud.Common.Middlewares.Authentication;
+using NightCloud.Common.Middlewares.ExceptionHandling;
 using Serilog;
 
 namespace Files.Presentation.Extensions;

@@ -2,7 +2,7 @@
 using Files.Domain.Enums;
 using Files.Infrastructure.Persistence;
 using MassTransit;
-using QueueMessaging.File;
+using NightCloud.Common.QueueMessaging.File;
 
 namespace Files.Infrastructure.Messaging.Consumers;
 public class FileCreatedFaultConsumer : IConsumer<Fault<FileCreated>>
