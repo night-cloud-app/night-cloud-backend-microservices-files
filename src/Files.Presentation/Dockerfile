@@ -4,14 +4,13 @@ EXPOSE 80
 EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
-COPY "Shared/" "Shared/"
 WORKDIR "/src/Files/src"
-COPY "/Microservices/Files/src" .
+COPY "/microservices/files/src" .
 WORKDIR "Files.Presentation"
 RUN dotnet restore "Files.Presentation.csproj"
 
 WORKDIR "/src/Files/Tests/Files.Application.UnitTests"
-COPY "/Microservices/Files/Tests/Files.Application.UnitTests" .
+COPY "/microservices/files/Tests/Files.Application.UnitTests" .
 RUN dotnet test -c Release
 
 WORKDIR "/src/Files/src/Files.Presentation"
